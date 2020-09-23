@@ -1,0 +1,51 @@
+<button class="btn btn-success rounded float-right" (click)="openEditNewForm()">Neuer Mitarbeiter</button>
+<br>
+<table class="table" *ngIf="!isLoading">
+  <thead>
+  <tr>
+    <th scope="col">Vorname</th>
+    <th scope="col">Nachname</th>
+    <th scope="col">Status</th>
+    <th scope="col">Aktion</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of personModel">
+    <td>{{item.firstName}}</td>
+    <td>{{item.lastName}}</td>
+    <td>{{displayStatus(item)}}</td>
+    <td>
+      <button class="btn btn-secondary" (click)="openEditForm(item)">Bearbeiten</button>
+      <button #popoverWindow="ngbPopover"
+              [autoClose]="'outside'"
+              [ngbPopover]="popContent"
+              [popoverClass]="'js-test-popover'"
+              [popoverTitle]="popTitle"
+              [disablePopover]="false"
+              [disabled]="false"
+              class="btn btn-danger"
+              container="body">Löschen
+      </button>
+      <ng-template #popContent>
+        <div class="mb-3">
+          <div [innerHtml]="popoverContent(item)"></div>
+        </div>
+        <div class="popover-footer">
+          <button (click)="popoverWindow.toggle()" class="btn btn-sm btn-secondary" type="button">
+            Abbrechen
+          </button>
+          <button (click)="deleteUser(item)" class="btn btn-danger"
+                  type="button">
+            Löschen
+          </button>
+        </div>
+      </ng-template>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #popTitle>
+  <div [innerHtml]="'Person löschen'"></div>
+</ng-template>
+

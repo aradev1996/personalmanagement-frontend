@@ -1,0 +1,33 @@
+<header>
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark " style="background-color: #212121;">
+    <a class="navbar-brand" routerLink="/person-list">
+      <span class="mr-1" style="color:white">Personalmanagement</span>
+      <img src="assets/params/images/logo/ganatan.png" width="20" height="20" alt="ganatan">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/person-list">
+            Person List
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/person-statistic">
+            Statistik
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+

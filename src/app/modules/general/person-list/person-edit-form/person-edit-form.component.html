@@ -1,0 +1,108 @@
+<div class="modal-content">
+  <div class="modal-header bg-white">
+    <h6 class="modal-title m-0">Person speichern</h6>
+  </div>
+  <div class="modal-body">
+    <div class="card js-test-modal-project-creation">
+      <div class="card-block">
+        <div class="mb-3">
+          <label>Vorname</label>
+          <div class="input-group input-group-sm">
+            <input
+              [(ngModel)]="personModel.firstName"
+              class="form-control form-element-single-part"
+              type="search"/>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Nachname</label>
+          <div class="input-group input-group-sm">
+            <input
+              [(ngModel)]="personModel.lastName"
+              class="form-control form-element-single-part"
+              type="search"/>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Adresse</label>
+          <div class="input-group input-group-sm">
+            <input
+              [(ngModel)]="personModel.adress"
+              class="form-control form-element-single-part"
+              type="search"/>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Geburtstag</label>
+          <div class="input-group input-group-sm">
+            <input
+              name="dp"
+              [(ngModel)]="birthdayModel"
+              placeholder="yyyy-mm-dd"
+              ngbDatepicker #d="ngbDatepicker"
+              class="form-control form-element-single-part"
+              type="search"/>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Gehalt</label>
+          <div class="input-group input-group-sm">
+            <input
+              [(ngModel)]="personModel.salary"
+              class="form-control form-element-single-part"
+              type="search"/>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Aufnahmedatum</label>
+          <div class="input-group input-group-sm">
+            <input
+              name="f"
+              [(ngModel)]="aufnahmeDateModel"
+              placeholder="yyyy-mm-dd"
+              ngbDatepicker #f="ngbDatepicker"
+              class="form-control form-element-single-part"
+              type="search"/>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="f.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Austrittsdatum</label>
+          <div class="input-group input-group-sm">
+            <input
+              name="e"
+              [(ngModel)]="austrittDateModel"
+              placeholder="yyyy-mm-dd"
+              ngbDatepicker #e="ngbDatepicker"
+              class="form-control form-element-single-part"
+              type="search"/>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Status</label>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" [(ngModel)]="personModel.status" class="custom-control-input" id="customSwitches" [checked]="getStatus()">
+            <label class="custom-control-label" for="customSwitches">Status setzen</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer bg-white justify-content-between">
+      <button class="btn btn-sm btn-outline-secondary mr-auto rounded" (click)="closeModal()">
+        Abbrechen
+      </button>
+      <button
+        class="btn btn-success" (click)="submit()">
+        Speichern
+      </button>
+    </div>
+  </div>
+</div>
