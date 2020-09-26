@@ -34,10 +34,9 @@
           <button (click)="popoverWindow.toggle()" class="btn btn-sm btn-secondary" type="button">
             Abbrechen
           </button>
-          <button (click)="deleteUser(item)" class="btn btn-danger"
+          <button [id]="'pop-over-button-click'" (click)="deleteUser(item)" class="btn btn-danger"
                   type="button">
-            Löschen
-          </button>
+            Löschen</button>
         </div>
       </ng-template>
     </td>

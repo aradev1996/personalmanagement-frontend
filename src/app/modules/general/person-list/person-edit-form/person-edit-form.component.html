@@ -1,108 +1,138 @@
-<div class="modal-content">
-  <div class="modal-header bg-white">
-    <h6 class="modal-title m-0">Person speichern</h6>
-  </div>
-  <div class="modal-body">
-    <div class="card js-test-modal-project-creation">
-      <div class="card-block">
-        <div class="mb-3">
-          <label>Vorname</label>
-          <div class="input-group input-group-sm">
-            <input
-              [(ngModel)]="personModel.firstName"
-              class="form-control form-element-single-part"
-              type="search"/>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label>Nachname</label>
-          <div class="input-group input-group-sm">
-            <input
-              [(ngModel)]="personModel.lastName"
-              class="form-control form-element-single-part"
-              type="search"/>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label>Adresse</label>
-          <div class="input-group input-group-sm">
-            <input
-              [(ngModel)]="personModel.adress"
-              class="form-control form-element-single-part"
-              type="search"/>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label>Geburtstag</label>
-          <div class="input-group input-group-sm">
-            <input
-              name="dp"
-              [(ngModel)]="birthdayModel"
-              placeholder="yyyy-mm-dd"
-              ngbDatepicker #d="ngbDatepicker"
-              class="form-control form-element-single-part"
-              type="search"/>
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+<form #f="ngForm" [formGroup]="this.personForm">
+  <div class="modal-content">
+    <div class="modal-header bg-white">
+      <h6 class="modal-title m-0">Person speichern</h6>
+    </div>
+    <div class="modal-body">
+      <div class="card js-test-modal-project-creation">
+        <div class="card-block">
+          <div class="mb-3">
+            <label>Vorname:*</label>
+            <div class="input-group input-group-sm">
+              <input
+                formControlName="firstName"
+                [(ngModel)]="personModel.firstName"
+                class="form-control form-element-single-part js-test-firstName-input"
+                type="search" required
+              />
+            </div>
+            <div *ngIf="f.invalid && f.submitted && personForm.controls.firstName.errors" class="alert alert-danger js-test-firstName-danger">
+              <div *ngIf="personForm.controls.firstName.errors?.required">Vorname muss angegeben werden!</div>
             </div>
           </div>
-        </div>
-        <div class="mb-3">
-          <label>Gehalt</label>
-          <div class="input-group input-group-sm">
-            <input
-              [(ngModel)]="personModel.salary"
-              class="form-control form-element-single-part"
-              type="search"/>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label>Aufnahmedatum</label>
-          <div class="input-group input-group-sm">
-            <input
-              name="f"
-              [(ngModel)]="aufnahmeDateModel"
-              placeholder="yyyy-mm-dd"
-              ngbDatepicker #f="ngbDatepicker"
-              class="form-control form-element-single-part"
-              type="search"/>
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="f.toggle()" type="button"></button>
+          <div class="mb-3">
+            <label>Nachname:*</label>
+            <div class="input-group input-group-sm">
+              <input
+                formControlName="lastName"
+                [(ngModel)]="personModel.lastName"
+                class="form-control form-element-single-part js-test-lastName-input"
+                type="search"/>
+            </div>
+            <div *ngIf="f.invalid && f.submitted && personForm.controls.lastName.errors" class="alert alert-danger js-test-lastName-danger">
+              <div *ngIf="personForm.controls.lastName.errors?.required">Nachname muss angegeben werden!</div>
             </div>
           </div>
-        </div>
-        <div class="mb-3">
-          <label>Austrittsdatum</label>
-          <div class="input-group input-group-sm">
-            <input
-              name="e"
-              [(ngModel)]="austrittDateModel"
-              placeholder="yyyy-mm-dd"
-              ngbDatepicker #e="ngbDatepicker"
-              class="form-control form-element-single-part"
-              type="search"/>
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
+          <div class="mb-3">
+            <label>Adresse:*</label>
+            <div class="input-group input-group-sm">
+              <input
+                formControlName="adress"
+                [(ngModel)]="personModel.adress"
+                class="form-control form-element-single-part js-test-adress-input"
+                type="search"/>
+            </div>
+            <div *ngIf="f.invalid && f.submitted && personForm.controls.adress.errors" class="alert alert-danger js-test-adress-danger">
+              <div *ngIf="personForm.controls.adress.errors?.required">Adresse muss angegeben werden!</div>
             </div>
           </div>
-        </div>
-        <div class="mb-3">
-          <label>Status</label>
-          <div class="custom-control custom-switch">
-            <input type="checkbox" [(ngModel)]="personModel.status" class="custom-control-input" id="customSwitches" [checked]="getStatus()">
-            <label class="custom-control-label" for="customSwitches">Status setzen</label>
+          <div class="mb-3">
+            <label>Geburtstag:*</label>
+            <div class="input-group input-group-sm">
+              <input
+                formControlName="birthdate"
+                name="dp"
+                [(ngModel)]="birthdayModel"
+                placeholder="yyyy-mm-dd"
+                ngbDatepicker #d="ngbDatepicker"
+                class="form-control form-element-single-part js-test-birthdate-input"
+                type="search"/>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+              </div>
+            </div>
+            <div *ngIf="f.invalid && f.submitted && personForm.controls.birthdate.errors" class="alert alert-danger js-test-birthdate-danger">
+              <div *ngIf="personForm.controls.birthdate.errors?.required">Geburtstag muss angegeben werden!</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label>Gehalt:*</label>
+            <div class="input-group input-group-sm">
+              <input
+                formControlName="salary"
+                [(ngModel)]="personModel.salary"
+                class="form-control form-element-single-part js-test-salary-input"
+                type="search"/>
+            </div>
+            <div *ngIf="f.invalid && f.submitted && personForm.controls.salary.errors" class="alert alert-danger js-test-salary-danger">
+              <div *ngIf="personForm.controls.salary.errors?.required">Gehalt muss angegeben werden!</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label>Aufnahmedatum:*</label>
+            <div class="input-group input-group-sm">
+              <input
+                name="f"
+                formControlName="recordingDate"
+                [(ngModel)]="aufnahmeDateModel"
+                placeholder="yyyy-mm-dd"
+                ngbDatepicker #f="ngbDatepicker"
+                class="form-control form-element-single-part js-test-recordingdate-input"
+                type="search"/>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="f.toggle()" type="button"></button>
+              </div>
+            </div>
+            <div *ngIf="f.invalid && f.submitted && personForm.controls.recordingDate.errors" class="alert alert-danger js-test-recordingDate-danger">
+              <div *ngIf="personForm.controls.recordingDate.errors?.required">Aufnahmedatum muss angegeben werden!</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label>Austrittsdatum:</label>
+            <div class="input-group input-group-sm">
+              <input
+                formControlName="leavingDate"
+                name="e"
+                [(ngModel)]="austrittDateModel"
+                placeholder="yyyy-mm-dd"
+                ngbDatepicker #e="ngbDatepicker"
+                class="form-control form-element-single-part js-test-leavingDate-input"
+                type="search"/>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label>Status:*</label>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" formControlName="status" [(ngModel)]="personModel.status"
+                     class="custom-control-input js-test-status-input" id="customSwitches" [checked]="getStatus()">
+              <label class="custom-control-label" for="customSwitches">Status setzen</label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="modal-footer bg-white justify-content-between">
-      <button class="btn btn-sm btn-outline-secondary mr-auto rounded" (click)="closeModal()">
-        Abbrechen
-      </button>
-      <button
-        class="btn btn-success" (click)="submit()">
-        Speichern
-      </button>
+      <div class="modal-footer bg-white justify-content-between">
+        <button class="btn btn-sm btn-outline-secondary mr-auto rounded" (click)="closeModal()">
+          Abbrechen
+        </button>
+        <button
+          class="btn btn-success js-test-save" (click)="submit()"
+          type="submit">
+          Speichern
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</form>

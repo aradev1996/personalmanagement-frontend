@@ -3,6 +3,7 @@ import {NgbActiveModal, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {PersonResponseModel} from '../person-response.model';
 import {DateTimeUtil} from '../../date-time.util';
 import {PersonCreateUpdateService} from './person-create-update.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -16,10 +17,12 @@ export class PersonEditFormComponent implements OnInit {
   birthdayModel: NgbDateStruct;
   aufnahmeDateModel: NgbDateStruct;
   austrittDateModel: NgbDateStruct;
+  public personForm: FormGroup;
   date: { year: number, month: number };
 
 
-  constructor(private activeModal: NgbActiveModal, private personApiService: PersonCreateUpdateService) {
+  constructor(private activeModal: NgbActiveModal, private personApiService: PersonCreateUpdateService, private formBuilder: FormBuilder) {
+    this.personForm = this.buildPersonFormGroup();
   }
 
   ngOnInit(): void {
@@ -45,15 +48,28 @@ export class PersonEditFormComponent implements OnInit {
     this.personModel.recordingDate = DateTimeUtil.ngbDateStructToString(this.aufnahmeDateModel, true);
     this.personModel.birthDate = DateTimeUtil.ngbDateStructToString(this.birthdayModel, true);
 
-    if (this.personModel.userId) {
-      this.personApiService.doUpdate(this.personModel.userId, this.personModel).subscribe((personModel: any) => {
-      });
-    } else {
-      this.personApiService.doCreate(this.personModel).subscribe((personModel: any) => {
-      });
+    if (this.personForm.valid) {
+      if (this.personModel.userId) {
+        this.personApiService.doUpdate(this.personModel.userId, this.personModel).subscribe((personModel: any) => {
+        });
+      } else {
+        this.personApiService.doCreate(this.personModel).subscribe((personModel: any) => {
+        });
+      }
+      this.activeModal.close('success');
     }
+  }
 
-
-    this.activeModal.close('success');
+  private buildPersonFormGroup() {
+    return this.formBuilder.group({
+      firstName: [, Validators.required],
+      lastName: [, Validators.required],
+      adress: [, Validators.required],
+      birthdate: [, Validators.required],
+      salary: [, Validators.required],
+      recordingDate: [, Validators.required],
+      leavingDate: [],
+      status: [],
+    });
   }
 }
