@@ -1,0 +1,31 @@
+<div class="modal-content" *ngIf="!isLoading">
+  <div class="modal-header bg-white">
+    <h6 class="modal-title m-0">Person auswählen</h6>
+  </div>
+  <div class="modal-body">
+    <div class="card js-test-modal-project-creation">
+      <div class="card-block">
+        <div class="mb-3">
+          <ng-container>
+            <div class="form-group">
+              <label for="sel1">Person auswählen</label>
+              <select class="form-control" id="sel1" [(ngModel)]="selectedPerson" (change)="onChangeA()">
+                  <option *ngFor="let person of personModel" [ngValue]="person">{{person.lastName}}</option>
+              </select>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer bg-white justify-content-between">
+      <button class="btn btn-sm btn-outline-secondary mr-auto rounded" (click)="closeModal()">
+        Abbrechen
+      </button>
+      <button
+        class="btn btn-success js-test-save" (click)="submit()"
+        type="submit">
+        Weiter
+      </button>
+    </div>
+  </div>
+</div>

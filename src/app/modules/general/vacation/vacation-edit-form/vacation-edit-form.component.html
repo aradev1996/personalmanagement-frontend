@@ -1,0 +1,83 @@
+<form #f="ngForm" [formGroup]="this.urlaubForm">
+  <div class="modal-content">
+    <div class="modal-header bg-white">
+      <h6 class="modal-title m-0">Urlaub beantragen</h6>
+    </div>
+    <div class="modal-body">
+      <div class="card js-test-modal-project-creation">
+        <div class="card-block">
+          <div class="mb-3">
+            <label>Ausgewählte Person</label>
+            <div class="input-group input-group-sm">
+              <input
+                formControlName="lastName"
+                name="dp"
+                [(ngModel)]="personModel.lastName"
+                class="form-control form-element-single-part js-test-birthdate-input"
+                type="search"/>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label>Urlaubstage</label>
+            <div class="input-group input-group-sm">
+              <input
+                formControlName="holidayDays"
+                name="dp"
+                [(ngModel)]="personModel.holidayDays"
+                class="form-control form-element-single-part js-test-birthdate-input"
+                type="search"/>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label>Start Datum:*</label>
+            <div class="input-group input-group-sm">
+              <input
+                formControlName="startDate"
+                name="dp"
+                [(ngModel)]="startDateModel"
+                placeholder="yyyy-mm-dd"
+                ngbDatepicker #d="ngbDatepicker"
+                class="form-control form-element-single-part js-test-birthdate-input"
+                type="search"/>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+              </div>
+            </div>
+            <div *ngIf="f.invalid && f.submitted && urlaubForm.controls.startDateModel.errors" class="alert alert-danger js-test-birthdate-danger">
+              <div *ngIf="urlaubForm.controls.startDateModel.errors?.required">Startdatum muss angegeben werden!</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label>End Datum:*</label>
+            <div class="input-group input-group-sm">
+              <input
+                name="dp"
+                formControlName="endDate"
+                [(ngModel)]="endDateModel"
+                placeholder="yyyy-mm-dd"
+                ngbDatepicker #c="ngbDatepicker"
+                class="form-control form-element-single-part js-test-recordingdate-input"
+                type="search"/>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="c.toggle()" type="button"></button>
+              </div>
+            </div>
+            <div *ngIf="f.invalid && f.submitted && urlaubForm.controls.endDateModel.errors" class="alert alert-danger js-test-recordingDate-danger">
+              <div *ngIf="urlaubForm.controls.endDateModel.errors?.required">Enddatum muss angegeben werden!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer bg-white justify-content-between">
+        <button class="btn btn-sm btn-outline-secondary mr-auto rounded" (click)="closeModal()">
+          Abbrechen
+        </button>
+        <button
+          class="btn btn-success js-test-save" (click)="submit()"
+          type="submit">
+          Speichern
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

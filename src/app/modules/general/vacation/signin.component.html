@@ -1,0 +1,19 @@
+<button class="btn btn-success rounded float-right" (click)="openUserSelectForm()">Urlaub hinzufügen</button>
+<br>
+<table class="table" *ngIf="!isLoading">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Startdatum</th>
+    <th scope="col">Enddatum</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of vacationList">
+    <td>{{item.personResponse.lastName}}</td>
+    <td>{{item.startDate}}</td>
+    <td>{{item.endDate}}</td>
+  </tr>
+  </tbody>
+</table>
+

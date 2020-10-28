@@ -8,6 +8,7 @@ export class PersonResponseModel {
   leavingDate: string;
   salary: string;
   status: boolean;
+  holidayDays: string;
 
   static fromJson(json: any): PersonResponseModel {
     const personResponseModel = new PersonResponseModel();
@@ -21,6 +22,7 @@ export class PersonResponseModel {
     personResponseModel.leavingDate = json.leavingDate;
     personResponseModel.salary = json.salary;
     personResponseModel.status = json.status;
+    personResponseModel.holidayDays = json.holidayDays;
 
     return personResponseModel;
   }
